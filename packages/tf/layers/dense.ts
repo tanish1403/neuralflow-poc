@@ -1,4 +1,5 @@
 import { Layer as L } from "../types";
+import { Layer } from "../base-layer";
 
 export const dense: L = new Layer({
   name: "Dense",
