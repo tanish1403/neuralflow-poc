@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useCallback } from "react";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { Layer as L } from "@/packages/tf/types";
@@ -6,9 +6,11 @@ import { Handle, NodeProps, Position } from "reactflow";
 
 function CustomNode(props: NodeProps<L>) {
   const { data, isConnectable } = props;
+
   return (
     <div className="flex flex-col text-xs bg-gray-100 border active:border-orange-300">
       <Handle
+        id="a"
         type="target"
         position={Position.Left}
         style={{ background: "#555" }}
@@ -22,16 +24,15 @@ function CustomNode(props: NodeProps<L>) {
         {data.args.map((arg) => {
           return (
             <div key={arg.GetName()}>
-              <Label  className="text-[0.5rem] m-0">
-                {arg.GetName()}
-              </Label>
+              <Label className="text-[0.5rem] m-0">{arg.GetName()}</Label>
               <Input className="text-[0.5rem] h-[20px]" />
             </div>
           );
         })}
       </div>
       <Handle
-        type="target"
+        id="b"
+        type="source"
         position={Position.Right}
         style={{ background: "#555" }}
         onConnect={(params) => console.log("handle onConnect", params)}
