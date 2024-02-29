@@ -1,14 +1,7 @@
 import { dense } from "@/packages/tf/layers/dense";
 import { MarkerType, Position } from "reactflow";
 
-export const initialNodes = [
-  {
-    id: "1",
-    type: "custom",
-    position: { x: 100, y: 200 },
-    data: dense,
-  },
-];
+export const initialNodes = [];
 
 export const initialEdges = [
   {
