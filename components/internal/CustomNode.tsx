@@ -7,7 +7,7 @@ import { Handle, NodeProps, Position } from "reactflow";
 function CustomNode(props: NodeProps<L>) {
   const { data, isConnectable } = props;
   return (
-    <div className="flex flex-col text-xs bg-gray-100">
+    <div className="flex flex-col text-xs bg-gray-100 border active:border-orange-300">
       <Handle
         type="target"
         position={Position.Left}
@@ -21,12 +21,12 @@ function CustomNode(props: NodeProps<L>) {
       <div className="px-2 pb-2">
         {data.args.map((arg) => {
           return (
-            <>
-              <Label key={arg.GetName()} className="text-[0.5rem] m-0">
+            <div key={arg.GetName()}>
+              <Label  className="text-[0.5rem] m-0">
                 {arg.GetName()}
               </Label>
               <Input className="text-[0.5rem] h-[20px]" />
-            </>
+            </div>
           );
         })}
       </div>
