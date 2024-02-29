@@ -31,6 +31,7 @@ export default function Home() {
     (connection) => setEdges((eds) => addEdge(connection, eds)),
     [setEdges],
   );
+  console.log(nodes)
   return (
     <LayoutMain>
       <Sidebar reactFlowInstance={reactFlowInstance} setNodes={setNodes} />
