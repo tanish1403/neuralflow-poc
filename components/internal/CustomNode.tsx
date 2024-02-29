@@ -6,7 +6,6 @@ import { Handle, NodeProps, Position } from "reactflow";
 
 function CustomNode(props: NodeProps<L>) {
   const { data, isConnectable } = props;
-  // console.log(data);
   return (
     <div className="flex flex-col text-xs bg-gray-100">
       <Handle
