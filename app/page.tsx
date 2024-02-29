@@ -1,6 +1,12 @@
 "use client";
-import React from "react";
-import ReactFlow, { MarkerType, useEdgesState, useNodesState } from "reactflow";
+import React, { useCallback, useState } from "react";
+import ReactFlow, {
+  OnConnect,
+  ReactFlowInstance,
+  addEdge,
+  useEdgesState,
+  useNodesState,
+} from "reactflow";
 
 import "reactflow/dist/style.css";
 
@@ -10,8 +16,7 @@ import {
   initialNodes,
 } from "@/components/internal/initial-elements";
 import { LayoutMain } from "@/components/layout-main";
-import { Button } from "@/components/ui/button";
-import { Layers, Layers3, Play } from "lucide-react";
+import { Sidebar } from "@/components/internal/Sidebar";
 
 const nodeTypes = {
   custom: CustomNode,
@@ -20,30 +25,22 @@ const nodeTypes = {
 export default function Home() {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
-
+  const [reactFlowInstance, setReactFlowInstance] =
+    useState<ReactFlowInstance | null>(null);
+  const onConnect: OnConnect = useCallback(
+    (connection) => setEdges((eds) => addEdge(connection, eds)),
+    [setEdges],
+  );
   return (
     <LayoutMain>
-      <div className="absolute flex flex-col top-5 left-5 z-30 gap-2">
-        <Button
-          className="flex flex-col justify-around h-[5rem] w-[5rem]"
-          variant={"outline"}
-        >
-          <Play fill="black" />
-          <h2>Input</h2>
-        </Button>
-        <Button
-          className="flex flex-col justify-around h-[5rem] w-[5rem]"
-          variant={"outline"}
-        >
-          <Layers3 />
-          <h2>Layer</h2>
-        </Button>
-      </div>
+      <Sidebar reactFlowInstance={reactFlowInstance} setNodes={setNodes} />
       <ReactFlow
-        nodes={initialNodes}
-        edges={initialEdges}
+        nodes={nodes}
+        edges={edges}
+        onConnect={onConnect}
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
+        onInit={setReactFlowInstance}
         fitView
         nodeTypes={nodeTypes}
       />
