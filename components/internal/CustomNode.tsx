@@ -2,13 +2,20 @@ import React, { memo } from "react";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { Layer as L } from "@/packages/tf/types";
-import { NodeProps } from "reactflow";
+import { Handle, NodeProps, Position } from "reactflow";
 
 function CustomNode(props: NodeProps<L>) {
-  const { data } = props;
-  console.log(data);
+  const { data, isConnectable } = props;
+  // console.log(data);
   return (
     <div className="flex flex-col text-xs bg-gray-100">
+      <Handle
+        type="target"
+        position={Position.Left}
+        style={{ background: "#555" }}
+        onConnect={(params) => console.log("handle onConnect", params)}
+        isConnectable={isConnectable}
+      />
       <div className="font-bold border-b-white border-b-2 p-2">
         <h2>{data.name}</h2>
       </div>
@@ -24,6 +31,13 @@ function CustomNode(props: NodeProps<L>) {
           );
         })}
       </div>
+      <Handle
+        type="target"
+        position={Position.Right}
+        style={{ background: "#555" }}
+        onConnect={(params) => console.log("handle onConnect", params)}
+        isConnectable={isConnectable}
+      />
     </div>
   );
 }
