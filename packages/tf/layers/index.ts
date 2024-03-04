@@ -4,6 +4,4 @@ import { concatenate } from "./concatenate";
 import { dense } from "./dense";
 export * from "./input";
 
-export const layers = [
-    batch_normalisation, dense, activation, concatenate
-]
+export const layers = [activation, batch_normalisation, concatenate, dense];
