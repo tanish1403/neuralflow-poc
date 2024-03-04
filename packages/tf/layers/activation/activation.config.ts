@@ -1,4 +1,4 @@
-import { ArgsInstance } from "../..";
+import { ArgsInstance } from "../../base-layer";
 
 export const args: ArgsInstance[] = [
   {

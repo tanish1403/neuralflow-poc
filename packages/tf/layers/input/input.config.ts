@@ -1,4 +1,3 @@
-import { ArgsInstance } from "../..";
 // shape=None,
 // batch_size=None,
 // name=None,
@@ -6,6 +5,9 @@ import { ArgsInstance } from "../..";
 // sparse=None,
 // tensor=None,
 // ragged=None,
+
+import { ArgsInstance } from "../../base-layer";
+
 // type_spec=None,
 export const args: ArgsInstance[] = [
   {

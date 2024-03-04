@@ -1,5 +1,4 @@
-import { ArgsInstance } from "../..";
-
+import { ArgsInstance } from "../../base-layer";
 // axis=-1,
 // momentum=0.99,
 // epsilon=0.001,
