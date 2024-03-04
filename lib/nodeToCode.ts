@@ -1,4 +1,4 @@
-import { Layer as L } from "@/packages/tf/types";
+import { Layer as L } from "@/packages/tf";
 import { topologicalSort } from "./topologicalSort";
 import { Node } from "reactflow";
 

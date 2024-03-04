@@ -1,7 +1,7 @@
 import React, { memo, useCallback, useState } from "react";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
-import { Layer as L } from "@/packages/tf/types";
+import { Layer as L } from "@/packages/tf";
 import { Handle, NodeProps, Position } from "reactflow";
 import {
   Accordion,

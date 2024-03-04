@@ -1,7 +1,6 @@
 import { Layer } from "../base-layer";
-import { Layer as L } from "../types";
 
-export const input: L = new Layer({
+export const input = new Layer({
   name: "Input",
   nameTf: "Input",
   argNames: [
