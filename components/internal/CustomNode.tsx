@@ -42,8 +42,8 @@ function CustomNode(props: NodeProps<L>) {
             <div className="px-2 pb-2">
               {data.args.map((arg) => {
                 return (
-                  <div key={arg.GetName()}>
-                    <Label className="text-[0.5rem] m-0">{arg.GetName()}</Label>
+                  <div key={arg.GetCaptalisedName()}>
+                    <Label className="text-[0.5rem] m-0">{arg.GetCaptalisedName()}</Label>
                     <Input
                       className="text-[0.5rem] h-[20px]"
                       onChange={(e) => {
