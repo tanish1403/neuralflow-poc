@@ -43,11 +43,13 @@ function CustomNode(props: NodeProps<L>) {
               {data.args.map((arg) => {
                 return (
                   <div key={arg.GetCaptalisedName()}>
-                    <Label className="text-[0.5rem] m-0">{arg.GetCaptalisedName()}</Label>
+                    <Label className="text-[0.5rem] m-0">
+                      {arg.GetCaptalisedName()}
+                    </Label>
                     <Input
                       className="text-[0.5rem] h-[20px]"
                       onChange={(e) => {
-                        console.log(e.target.value, id);
+                        arg.value = e.target.value;
                       }}
                     />
                   </div>
