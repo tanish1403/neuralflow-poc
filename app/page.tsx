@@ -20,8 +20,8 @@ import { Sidebar } from "@/components/internal/Sidebar";
 import { Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { topologicalSort } from "@/lib/topologicalSort";
-import { nodeToCode } from "@/lib/nodeToCode";
-
+import { generateCodeCallback } from "@/lib/nodeToCode";
+import { Node } from "reactflow";
 const nodeTypes = {
   custom: CustomNode,
 };
@@ -32,7 +32,7 @@ export default function Home() {
   const [reactFlowInstance, setReactFlowInstance] =
     useState<ReactFlowInstance | null>(null);
   const graph = useRef<Record<string, string[]>>({});
-  const [topologicalOrder, setTopologicalOrder] = useState<string[]>([]);
+  // const [topologicalOrder, setTopologicalOrder] = useState<string[]>([]);
   const onConnect: OnConnect = useCallback(
     (connection) => {
       setEdges((eds) => addEdge(connection, eds));
@@ -50,21 +50,8 @@ export default function Home() {
     [setEdges, graph],
   );
 
-  const generateCode = useCallback(() => {
-    // setTopologicalOrder(topologicalSort(graph.current));
-    const order = topologicalSort(graph.current);
-    let code =
-      "import tensorflow as tf\nfrom tensorflow.keras.models import Model\n";
-    order.forEach((node) => {
-      const n = nodes.find((n) => n.id === node);
-      if (n) {
-        // console.log(n.data);
-        code += nodeToCode(n.data, node);
-      }
-    });
-    console.log(code);
-  }, []);
-  // console.log(graph.current);
+  const generateCode = useCallback(generateCodeCallback, []);
+
   return (
     <LayoutMain>
       <Sidebar reactFlowInstance={reactFlowInstance} setNodes={setNodes} />
@@ -79,7 +66,7 @@ export default function Home() {
         nodeTypes={nodeTypes}
       />
       <Button
-        onClick={() => generateCode()}
+        onClick={() => generateCode(nodes, graph.current)}
         className="h-[70px] w-[70px] absolute bottom-10 right-10 bg-orange-400 rounded-full text-black hover:text-white"
       >
         <Zap />

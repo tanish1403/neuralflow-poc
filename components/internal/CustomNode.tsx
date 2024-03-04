@@ -1,4 +1,4 @@
-import React, { memo, useCallback } from "react";
+import React, { memo, useCallback, useState } from "react";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { Layer as L } from "@/packages/tf/types";
@@ -10,9 +10,15 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-function CustomNode(props: NodeProps<L>) {
-  const { data, isConnectable } = props;
+interface argsValUser {
+  id: string;
+  Layer: L;
+}
 
+function CustomNode(props: NodeProps<L>) {
+  const { id, data, isConnectable } = props;
+  // console.log(data, id);
+  const [argsValUser, setArgsValUser] = useState<argsValUser>();
   return (
     <div className="flex flex-col text-xs bg-gray-100 border active:border-orange-300 rounded-sm">
       <Handle
@@ -38,7 +44,12 @@ function CustomNode(props: NodeProps<L>) {
                 return (
                   <div key={arg.GetName()}>
                     <Label className="text-[0.5rem] m-0">{arg.GetName()}</Label>
-                    <Input className="text-[0.5rem] h-[20px]" />
+                    <Input
+                      className="text-[0.5rem] h-[20px]"
+                      onChange={(e) => {
+                        console.log(e.target.value, id);
+                      }}
+                    />
                   </div>
                 );
               })}
