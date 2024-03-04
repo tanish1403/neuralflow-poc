@@ -8,9 +8,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
-import { input, layers } from "@/packages/tf";
+import { input, layers, Layer as L } from "@/packages/tf";
 import { useCallback } from "react";
-import { Layer as L } from "@/packages/tf/types";
 
 let id = 1;
 const getId = () => `${id++}`;

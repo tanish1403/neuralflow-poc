@@ -1,7 +1,6 @@
 import { Layer } from "../base-layer";
-import { Layer as L } from "../types";
 
-export const batch_normalisation: L = new Layer({
+export const batch_normalisation = new Layer({
   name: "Batch Normalisation",
   nameTf: "BatchNormalisation",
   argNames: [
