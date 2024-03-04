@@ -21,7 +21,7 @@ export function Sidebar({
   reactFlowInstance: any;
   setNodes: any;
 }) {
-  const onClick = useCallback(
+  const createLayerNode = useCallback(
     (layer: L) => {
       if (!reactFlowInstance) return <></>;
       const position = reactFlowInstance.screenToFlowPosition({
@@ -47,7 +47,7 @@ export function Sidebar({
         className="flex flex-col justify-around h-[5rem] w-[5rem]"
         variant={"outline"}
         onClick={() => {
-          onClick(input);
+          createLayerNode(input());
         }}
       >
         <Play fill="black" />
@@ -62,14 +62,15 @@ export function Sidebar({
           <DropdownMenuLabel>Layers</DropdownMenuLabel>
           <DropdownMenuSeparator />
           {layers.map((layer) => {
+            const newLayer = layer();
             return (
               <DropdownMenuItem
                 key={layer.name}
                 onClick={() => {
-                  onClick(layer);
+                  createLayerNode(newLayer);
                 }}
               >
-                {layer.name}
+                {newLayer.name}
               </DropdownMenuItem>
             );
           })}
