@@ -1,3 +1,10 @@
+import { p_types } from "../typewriter";
+
+interface ArgsInstanceBase {
+  name: string;
+  type?: p_types;
+}
+
 /**
  * Represents an argument instance where isRequired is true, making defaultValue not required.
  *
@@ -6,8 +13,7 @@
  * @property {string} name - The name of the argument.
  * @property {boolean} isRequired - Indicates the argument is required.
  */
-interface ArgsInstanceRequired {
-  name: string;
+interface ArgsInstanceRequired extends ArgsInstanceBase {
   isRequired: true;
 }
 
@@ -20,9 +26,8 @@ interface ArgsInstanceRequired {
  * @property {string | number | null |boolean} defaultValue - The default value of the argument.
  * @property {false} [isRequired] - Optionally indicates the argument is not required.
  */
-interface ArgsInstanceWithDefault {
-  name: string;
-  defaultValue: string | number | null | boolean;
+interface ArgsInstanceWithDefault extends ArgsInstanceBase {
+  defaultValue: string | number | null | boolean | p_types;
   isRequired?: false;
 }
 
@@ -41,9 +46,9 @@ export type ArgsInstance = ArgsInstanceRequired | ArgsInstanceWithDefault;
  * @class Args
  */
 export class Args {
-  value: string | number | null | boolean;
+  value: string | number | null | boolean | p_types;
   name: string;
-  defaultValue?: string | number | null | boolean;
+  defaultValue?: string | number | null | boolean | p_types;
   isRequired: boolean;
 
   /**

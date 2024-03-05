@@ -6,6 +6,7 @@
 // tensor=None,
 // ragged=None,
 
+import { Tuple } from "@/packages/typewriter";
 import { ArgsInstance } from "../../base-layer";
 
 // type_spec=None,
@@ -13,7 +14,7 @@ export const args: ArgsInstance[] = [
   {
     name: "shape",
     isRequired: false,
-    defaultValue: "None",
+    defaultValue: ["2"] as Tuple,
   },
   {
     name: "batch_size",
