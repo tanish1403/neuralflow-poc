@@ -1,6 +1,6 @@
 import { ArgsInstance } from "../../base-layer";
 
-export const args = [
+export const args: ArgsInstance[] = [
   {
     name: "axis",
     isRequired: false,
