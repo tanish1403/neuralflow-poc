@@ -25,7 +25,7 @@ function CustomNode(props: NodeProps<L>) {
   const { name, args } = data;
   // console.log(data, id);
   return (
-    <div className="flex flex-col text-xs bg-gray-100 border active:border-orange-300 rounded-sm">
+    <div className="flex flex-col text-xs bg-gray-100 border active:border-orange-300 rounded-sm ">
       <Handle
         id="a"
         type="target"
@@ -36,7 +36,10 @@ function CustomNode(props: NodeProps<L>) {
       />
 
       <Accordion className="" type="single" collapsible>
-        <AccordionItem className="flex flex-col items-center" value="item-1">
+        <AccordionItem
+          className="flex flex-col items-center py-2"
+          value="item-1"
+        >
           <h2
             className={cn(
               "text-center font-bold border-b-white border-b-2 p-3 w-full",
@@ -59,35 +62,39 @@ function CustomNode(props: NodeProps<L>) {
                       onChange={(e) => {
                         arg.value = e.target.value;
                       }}
-                      required
                     />
                   </div>
                 );
             })}
           </div>
-          <AccordionTrigger className="flex items-center gap-1 text-[0.5rem] p-3">
-            Parameters
-          </AccordionTrigger>
-          <AccordionContent className="">
-            <div className="px-2 pb-2">
-              {args.map((arg) => {
-                if (!arg.isRequired)
-                  return (
-                    <div key={arg.GetCaptalisedName()}>
-                      <Label className="text-[0.5rem] m-0">
-                        {arg.GetCaptalisedName()}
-                      </Label>
-                      <Input
-                        className="text-[0.5rem] h-[20px]"
-                        onChange={(e) => {
-                          arg.value = e.target.value;
-                        }}
-                      />
-                    </div>
-                  );
-              })}
-            </div>
-          </AccordionContent>
+          {isAllOptionalArgs(args) && (
+            <>
+              <AccordionTrigger className="flex items-center gap-1 text-[0.5rem] p-3">
+                Parameters
+              </AccordionTrigger>
+              <AccordionContent className="">
+                <div className="px-2 pb-2">
+                  {args.map((arg) => {
+                    if (!arg.isRequired)
+                      return (
+                        <div key={arg.GetCaptalisedName()}>
+                          <Label className="text-[0.5rem] m-0">
+                            {arg.GetCaptalisedName()}
+                          </Label>
+                          <Input
+                            className="text-[0.5rem] h-[20px]"
+                            onChange={(e) => {
+                              arg.value = e.target.value;
+                            }}
+                            placeholder={String(arg.defaultValue)}
+                          />
+                        </div>
+                      );
+                  })}
+                </div>
+              </AccordionContent>
+            </>
+          )}
         </AccordionItem>
       </Accordion>
 
