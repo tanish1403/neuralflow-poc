@@ -27,7 +27,7 @@ interface ArgsInstanceRequired extends ArgsInstanceBase {
  * @property {false} [isRequired] - Optionally indicates the argument is not required.
  */
 interface ArgsInstanceWithDefault extends ArgsInstanceBase {
-  defaultValue: string | number | null | boolean | p_types;
+  defaultValue: p_types;
   isRequired?: false;
 }
 
@@ -46,9 +46,9 @@ export type ArgsInstance = ArgsInstanceRequired | ArgsInstanceWithDefault;
  * @class Args
  */
 export class Args {
-  value: string | number | null | boolean | p_types;
+  value: string;
   name: string;
-  defaultValue?: string | number | null | boolean | p_types;
+  defaultValue?: p_types;
   isRequired: boolean;
 
   /**
@@ -59,7 +59,7 @@ export class Args {
     this.name = i.name;
     this.isRequired = i.isRequired ?? false;
     this.defaultValue = (i as ArgsInstanceWithDefault).defaultValue ?? null;
-    this.value = this.defaultValue;
+    this.value = this.defaultValue.toCodeString();
   }
 
   /**
