@@ -1,38 +1,17 @@
-/**
- * Represents an argument instance where isRequired is true, making defaultValue not required.
- *
- * @export
- * @interface ArgsInstanceRequired
- * @property {string} name - The name of the argument.
- * @property {boolean} isRequired - Indicates the argument is required.
- */
+import { p_types } from "../typewriter";
+
 interface ArgsInstanceRequired {
-  name: string;
   isRequired: true;
 }
-
-/**
- * Represents an argument instance with a default value, automatically implying isRequired is false or omitted.
- *
- * @export
- * @interface ArgsInstanceWithDefault
- * @property {string} name - The name of the argument.
- * @property {string | number | null |boolean} defaultValue - The default value of the argument.
- * @property {false} [isRequired] - Optionally indicates the argument is not required.
- */
 interface ArgsInstanceWithDefault {
-  name: string;
-  defaultValue: string | number | null | boolean;
+  defaultValue: p_types;
   isRequired?: false;
 }
 
-/**
- * Combines ArgsInstanceRequired and ArgsInstanceWithDefault to enforce defaultValue being required when isRequired is false.
- *
- * @export
- * @type ArgsInstance
- */
-export type ArgsInstance = ArgsInstanceRequired | ArgsInstanceWithDefault;
+export type ArgsInstance = {
+  name: string;
+  type?: p_types;
+} & (ArgsInstanceRequired | ArgsInstanceWithDefault);
 
 /**
  * Class representing an argument, constructed with an instance that either requires a defaultValue or marks the argument as required.
@@ -41,9 +20,9 @@ export type ArgsInstance = ArgsInstanceRequired | ArgsInstanceWithDefault;
  * @class Args
  */
 export class Args {
-  value: string | number | null | boolean;
+  value: p_types;
   name: string;
-  defaultValue?: string | number | null | boolean;
+  defaultValue?: p_types;
   isRequired: boolean;
 
   /**

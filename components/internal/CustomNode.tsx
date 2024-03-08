@@ -10,6 +10,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { cn } from "@/lib/utils";
+import { supported_types } from "@/packages/typewriter";
 
 interface argsValUser {
   id: string;
@@ -51,18 +52,14 @@ function CustomNode(props: NodeProps<L>) {
 
           <div className="px-2 ">
             {args.map((arg) => {
+              console.log(arg.value.type === supported_types.tuple);
               if (arg.isRequired)
                 return (
                   <div key={arg.GetCaptalisedName()}>
                     <Label className="text-[0.5rem] m-0">
                       {arg.GetCaptalisedName()}
                     </Label>
-                    <Input
-                      className="text-[0.5rem] h-[20px]"
-                      onChange={(e) => {
-                        arg.value = e.target.value;
-                      }}
-                    />
+                    <Input className="text-[0.5rem] h-[20px]" />
                   </div>
                 );
             })}
@@ -83,9 +80,9 @@ function CustomNode(props: NodeProps<L>) {
                           </Label>
                           <Input
                             className="text-[0.5rem] h-[20px]"
-                            onChange={(e) => {
-                              arg.value = e.target.value;
-                            }}
+                            // onChange={(e) => {
+                            //   arg.value = e.target.value;
+                            // }}
                             placeholder={String(arg.defaultValue)}
                           />
                         </div>
