@@ -1,8 +1,10 @@
 import { p_primitive_types } from "../python_primitive";
+import { py, supported_types } from "../type";
 
-export class Tuple {
+export class Tuple implements py {
   // Constructor to initialize the Tuple
   value: p_primitive_types[];
+  type: supported_types = supported_types.tuple;
   constructor(...elements: p_primitive_types[]) {
     this.value = elements;
   }

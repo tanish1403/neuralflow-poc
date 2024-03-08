@@ -1,3 +1,4 @@
-import { str } from "./string";
+import { Int } from "./int";
+import { Str } from "./string";
 
-export type p_primitive_types = str;
+export type p_primitive_types = Int | Str;

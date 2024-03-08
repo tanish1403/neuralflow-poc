@@ -5,6 +5,6 @@ export const args: ArgsInstance[] = [
   {
     name: "shape",
     isRequired: false,
-    defaultValue: new Tuple("None", "None"),
+    defaultValue: Tuple.of(2),
   },
 ];
