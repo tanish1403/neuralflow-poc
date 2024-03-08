@@ -1,5 +1,5 @@
 import { p_primitive_types } from "../python_primitive";
-import { py, supported_types } from "../type";
+import { py, supported_types } from "../type.d";
 
 export class Tuple implements py {
   // Constructor to initialize the Tuple
