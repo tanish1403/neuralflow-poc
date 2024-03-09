@@ -3,6 +3,7 @@ import { p_types } from "../typewriter";
 interface ArgsInstanceRequired {
   isRequired: true;
 }
+
 interface ArgsInstanceWithDefault {
   defaultValue: p_types;
   isRequired?: false;

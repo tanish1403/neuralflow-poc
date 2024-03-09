@@ -1,6 +1,6 @@
-import { py, supported_types } from "../type.d";
+import { py, supported_types } from "../type";
 
-export class Str implements py {
+export class StrBase implements py {
   value: string = "";
   type: supported_types = supported_types.str;
   constructor(s: string) {
@@ -8,5 +8,8 @@ export class Str implements py {
   }
   toCodeString(): string {
     return `"${this.value}"`;
+  }
+  static of(s: string): StrBase {
+    return new StrBase(s);
   }
 }
