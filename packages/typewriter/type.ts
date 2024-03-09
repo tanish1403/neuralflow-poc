@@ -26,5 +26,5 @@ export enum supported_types {
   bytes,
   bytearray,
   memoryview,
-  NoneType,
+  noneType,
 }

@@ -1,4 +1,4 @@
-import { p_types } from "..";
+import { WithStaticOf, py } from "../type";
 import { ListBase } from "./base";
 
-export const List: p_types = ListBase;
+export const List: WithStaticOf<py> = ListBase;
