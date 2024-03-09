@@ -1,4 +1,4 @@
-import { py, supported_types } from "../type.d";
+import { py, supported_types } from "../type";
 
 export class Str implements py {
   value: string = "";

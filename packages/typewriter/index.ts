@@ -1,4 +1,4 @@
-export * from "./string";
+export * from "./str";
 export * from "./tuple";
 export * from "./int";
 export * from "./type.d";
