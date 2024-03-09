@@ -55,9 +55,9 @@ function CustomNode(props: NodeProps<L>) {
               console.log(arg.value.type === supported_types.tuple);
               if (arg.isRequired)
                 return (
-                  <div key={arg.GetCaptalisedName()}>
+                  <div key={arg.getCaptalisedName()}>
                     <Label className="text-[0.5rem] m-0">
-                      {arg.GetCaptalisedName()}
+                      {arg.getCaptalisedName()}
                     </Label>
                     <Input className="text-[0.5rem] h-[20px]" />
                   </div>
@@ -74,9 +74,9 @@ function CustomNode(props: NodeProps<L>) {
                   {args.map((arg) => {
                     if (!arg.isRequired)
                       return (
-                        <div key={arg.GetCaptalisedName()}>
+                        <div key={arg.getCaptalisedName()}>
                           <Label className="text-[0.5rem] m-0">
-                            {arg.GetCaptalisedName()}
+                            {arg.getCaptalisedName()}
                           </Label>
                           <Input
                             className="text-[0.5rem] h-[20px]"

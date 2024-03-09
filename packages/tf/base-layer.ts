@@ -42,7 +42,7 @@ export class Args {
    *
    * @return {string} The formatted name.
    */
-  GetCaptalisedName(): string {
+  getCaptalisedName(): string {
     return this.name
       .split("_")
       .map((part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase())
