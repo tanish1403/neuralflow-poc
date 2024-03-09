@@ -1,7 +1,7 @@
 export * from "./str";
 export * from "./tuple";
 export * from "./int";
-export * from "./type.d";
+export * from "./type";
 
 import { Tuple } from ".";
 import { List } from "./list";

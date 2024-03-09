@@ -1,12 +1,4 @@
-import { py, supported_types } from "../type.d";
+import { WithStaticOf, py, supported_types } from "../type";
+import { IntBase } from "./base";
 
-export class Int implements py {
-  value: number = 0;
-  type: supported_types = supported_types.int;
-  constructor(i: number) {
-    this.value = i;
-  }
-  toCodeString(): string {
-    return this.value.toString();
-  }
-}
+export const Int: WithStaticOf<py> = IntBase;

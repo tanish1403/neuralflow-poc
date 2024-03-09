@@ -1,11 +1,15 @@
 import { p_types } from ".";
-import { supported_types } from "./support";
 
 export interface py {
   value: unknown;
   type: supported_types;
   toCodeString(): string;
 }
+
+export type WithStaticOf<T> = {
+  new (...args: any[]): T; // Constructor signature
+  of: (...args: any[]) => T;
+};
 
 export enum supported_types {
   int,
