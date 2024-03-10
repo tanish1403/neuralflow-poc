@@ -1,4 +1,5 @@
 export function topologicalSort(graph: Record<string, string[]>) {
+  console.log(graph);
   // Initialize inDegree for each node to 0 and parents list
   let inDegree: Record<string, number> = {};
   // Object to keep track of parents for each node

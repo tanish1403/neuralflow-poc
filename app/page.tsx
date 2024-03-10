@@ -22,12 +22,13 @@ import { Button } from "@/components/ui/button";
 import { topologicalSort } from "@/lib/topologicalSort";
 import { generateCodeCallback } from "@/lib/nodeToCode";
 import { Node } from "reactflow";
+import { Layer, Model } from "@/packages/tf";
 const nodeTypes = {
   custom: CustomNode,
 };
 
 export default function Home() {
-  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
+  const [nodes, setNodes, onNodesChange] = useNodesState<Layer>(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   const [reactFlowInstance, setReactFlowInstance] =
     useState<ReactFlowInstance | null>(null);
@@ -50,7 +51,11 @@ export default function Home() {
     [setEdges, graph],
   );
 
-  const generateCode = useCallback(generateCodeCallback, []);
+  const generateCode = () => {
+    const layers = nodes.map((node) => node.data);
+    const model = new Model({ name: "sks", layers }).compile();
+    console.log(model);
+  };
 
   return (
     <LayoutMain>
@@ -66,7 +71,7 @@ export default function Home() {
         nodeTypes={nodeTypes}
       />
       <Button
-        onClick={() => generateCode(nodes, graph.current)}
+        onClick={() => generateCode()}
         className="h-[70px] w-[70px] absolute bottom-10 right-10 bg-orange-400 rounded-full text-black hover:text-white"
       >
         <Zap />

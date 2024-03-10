@@ -1,5 +1,5 @@
 import { Int, Tuple } from "@/packages/typewriter";
-import { ArgsInstance } from "../../base-layer";
+import { ArgsInstance } from "../base";
 
 export const args: ArgsInstance[] = [
   {

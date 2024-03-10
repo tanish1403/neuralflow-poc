@@ -1,4 +1,4 @@
-import { p_types } from "../typewriter";
+import { p_types } from "@/packages/typewriter";
 
 interface ArgsInstanceRequired {
   isRequired: true;
@@ -104,6 +104,18 @@ export class Layer {
     this.kwargs = [];
   }
 
+  static of({
+    name,
+    nameTf,
+    args,
+  }: {
+    name: string;
+    nameTf: string;
+    args: ArgsInstance[];
+  }) {
+    return new Layer({ name, nameTf, args });
+  }
+
   /**
    * @compiler
    *
@@ -113,7 +125,7 @@ export class Layer {
   compileLayer(): { code: string; link: string } {
     const link = `from tensorflow.keras.layers import ${this.nameTf}`;
     let code = `${this.nameTf}(`;
-
+    console.log(this.args);
     this.args.forEach((arg, i) => {
       code += arg.getCompiledString();
       if (i !== this.args.length - 1) {
