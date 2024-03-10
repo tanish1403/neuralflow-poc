@@ -1,29 +1,24 @@
 import { p_types } from "@/packages/typewriter";
 
-interface ArgsInstanceRequired {
+interface ArgsInstanceBase {
+  name: string;
+}
+
+interface ArgsInstanceRequired extends ArgsInstanceBase {
   isRequired: true;
 }
 
-interface ArgsInstanceWithDefault {
+interface ArgsInstanceWithDefault extends ArgsInstanceBase {
   defaultValue: p_types;
-  isRequired?: false;
+  isRequired: false;
 }
 
-export type ArgsInstance = {
-  name: string;
-  type?: p_types;
-} & (ArgsInstanceRequired | ArgsInstanceWithDefault);
+export type ArgsInstance = ArgsInstanceRequired | ArgsInstanceWithDefault;
 
-/**
- * Class representing an argument, constructed with an instance that either requires a defaultValue or marks the argument as required.
- *
- * @export
- * @class Args
- */
 export class Args {
-  value: p_types;
+  value: p_types | null;
   name: string;
-  defaultValue?: p_types;
+  defaultValue: p_types | null;
   isRequired: boolean;
 
   /**
@@ -32,9 +27,14 @@ export class Args {
    */
   constructor(i: ArgsInstance) {
     this.name = i.name;
-    this.isRequired = i.isRequired ?? false;
-    this.defaultValue = (i as ArgsInstanceWithDefault).defaultValue ?? null;
-    this.value = this.defaultValue;
+    this.isRequired = i.isRequired;
+    if (!i.isRequired) {
+      this.defaultValue = i.defaultValue;
+      this.value = this.defaultValue;
+      return;
+    }
+    this.defaultValue = null;
+    this.value = null;
   }
 
   /**
@@ -50,6 +50,11 @@ export class Args {
   }
 
   getCompiledString(): string {
+    if (!this.value) {
+      throw new Error(
+        `The argument ${this.name} is required and has no default value.`,
+      );
+    }
     return `${this.name}: ${this.value.toCodeString()}`;
   }
 }

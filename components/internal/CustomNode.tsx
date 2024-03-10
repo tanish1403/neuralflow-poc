@@ -52,7 +52,8 @@ function CustomNode(props: NodeProps<L>) {
 
           <div className="px-2 ">
             {args.map((arg) => {
-              console.log(arg.value.type === supported_types.tuple);
+              console.log(arg);
+              // console.log(arg.value.type === supported_types.tuple);
               if (arg.isRequired)
                 return (
                   <div key={arg.getCaptalisedName()}>
