@@ -11,7 +11,13 @@ export class Tuple implements py {
 
   // Method to convert the Tuple into a code string format
   toCodeString(): string {
-    return `(${this.value.join(",")})`;
+    const length = this.value.length;
+
+    if (length === 1) {
+      // in python a single element tuple should have a trailing comma
+      return `(${this.value[0].toCodeString()},)`;
+    }
+    return `(${this.value.map((v) => v.toCodeString()).join(", ")})`;
   }
 
   // Static method for creating a new Tuple instance

@@ -10,7 +10,7 @@ export class List implements py {
   }
 
   toCodeString(): string {
-    return `(${this.value.join(",")})`;
+    return `(${this.value.map((v) => v.toCodeString()).join(", ")})`;
   }
 
   static of(...elements: p_primitive_types[]): p_types {
