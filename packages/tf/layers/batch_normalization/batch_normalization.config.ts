@@ -26,7 +26,7 @@ export const args: ArgsInstance[] = [
   {
     name: "scale",
     isRequired: false,
-    defaultValue: true,
+    defaultValue: Bool.of(true),
   },
   {
     name: "beta_initializer",
