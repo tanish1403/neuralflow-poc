@@ -49,7 +49,6 @@ function CustomNode(props: NodeProps<L>) {
           >
             {name}
           </h2>
-
           <div className="px-2 ">
             {args.map((arg) => {
               console.log(arg);
@@ -65,34 +64,31 @@ function CustomNode(props: NodeProps<L>) {
                 );
             })}
           </div>
-          {isAllOptionalArgs(args) && (
-            <>
-              <AccordionTrigger className="flex items-center gap-1 text-[0.5rem] p-3">
-                Parameters
-              </AccordionTrigger>
-              <AccordionContent className="">
-                <div className="px-2 pb-2">
-                  {args.map((arg) => {
-                    if (!arg.isRequired)
-                      return (
-                        <div key={arg.getCaptalisedName()}>
-                          <Label className="text-[0.5rem] m-0">
-                            {arg.getCaptalisedName()}
-                          </Label>
-                          <Input
-                            className="text-[0.5rem] h-[20px]"
-                            // onChange={(e) => {
-                            //   arg.value = e.target.value;
-                            // }}
-                            placeholder={String(arg.defaultValue)}
-                          />
-                        </div>
-                      );
-                  })}
-                </div>
-              </AccordionContent>
-            </>
-          )}
+          <AccordionTrigger className="flex items-center gap-1 text-[0.5rem] p-3">
+            Parameters
+          </AccordionTrigger>
+
+          <AccordionContent className="">
+            <div className="px-2 pb-2">
+              {args.map((arg) => {
+                if (!arg.isRequired)
+                  return (
+                    <div key={arg.getCaptalisedName()}>
+                      <Label className="text-[0.5rem] m-0">
+                        {arg.getCaptalisedName()}
+                      </Label>
+                      <Input
+                        className="text-[0.5rem] h-[20px]"
+                        // onChange={(e) => {
+                        //   arg.value = e.target.value;
+                        // }}
+                        placeholder={String(arg.defaultValue)}
+                      />
+                    </div>
+                  );
+              })}
+            </div>
+          </AccordionContent>
         </AccordionItem>
       </Accordion>
 
