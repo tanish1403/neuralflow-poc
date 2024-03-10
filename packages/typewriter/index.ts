@@ -8,12 +8,12 @@ import { Tuple } from "./tuple";
 
 export type p_types =
   | p_primitive_types
-  | typeof Dict
-  | typeof List
-  | typeof Tuple
-  | typeof Int
-  | typeof Str
-  | typeof None;
+  | Dict
+  | List
+  | Tuple
+  | Int
+  | Str
+  | None;
 export * from "./str";
 export * from "./tuple";
 export * from "./int";

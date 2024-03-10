@@ -48,6 +48,10 @@ export class Args {
       .map((part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase())
       .join(" ");
   }
+
+  getCompiledString(): string {
+    return `${this.name}: ${this.value.toCodeString()}`;
+  }
 }
 /**
  *
@@ -72,6 +76,18 @@ export class Layer {
    * Keyword arguments of the layer
    */
   kwargs: any[];
+  /**
+   * Input nodes of the layer to whome it is connected to
+   */
+  input_nodes: Layer[] = [];
+
+  /**
+   * Id of the layer
+   * id: string;
+   * for now neglecting this idea of id, I was thinking to use this as the value in which it will be stored in the py
+   * id = batchNormalization_1
+   * batchNormalization_1 = BatchNormalization()(input_for_batchNormalization)
+   */
 
   constructor({
     name,

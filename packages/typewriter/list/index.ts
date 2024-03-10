@@ -1,4 +1,19 @@
-import { WithStaticOf, py } from "../type";
-import { ListBase } from "./base";
+import { p_types } from "..";
+import { p_primitive_types } from "../python_primitive";
+import { py, supported_types } from "../type";
 
-export const List: WithStaticOf<py> = ListBase;
+export class List implements py {
+  value: p_types[];
+  type: supported_types = supported_types.list;
+  constructor(...elements: p_types[]) {
+    this.value = elements;
+  }
+
+  toCodeString(): string {
+    return `(${this.value.join(",")})`;
+  }
+
+  static of(...elements: p_primitive_types[]): p_types {
+    return new List(...elements);
+  }
+}

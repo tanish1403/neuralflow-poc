@@ -1,3 +1,17 @@
-import { WithStaticOf, py } from "../type";
-import { NoneBase } from "./base";
-export const None: WithStaticOf<py> = NoneBase;
+import { py, supported_types } from "../type";
+
+export class None implements py {
+  value: null;
+  type: supported_types = supported_types.noneType;
+  constructor() {
+    this.value = null;
+  }
+
+  toCodeString(): string {
+    return "None";
+  }
+
+  static of(): py {
+    return new None();
+  }
+}
