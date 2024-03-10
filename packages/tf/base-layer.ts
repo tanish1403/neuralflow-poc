@@ -107,10 +107,11 @@ export class Layer {
   /**
    * @compiler
    *
+   * @return {*}  { code: string; link: string }
+   * @memberof Layer
    */
-
-  compileLayer(): { code: string; linker: string } {
-    const linker = `from tensorflow.keras.layers import ${this.nameTf}`;
+  compileLayer(): { code: string; link: string } {
+    const link = `from tensorflow.keras.layers import ${this.nameTf}`;
     let code = `${this.nameTf}(`;
 
     this.args.forEach((arg, i) => {
@@ -122,6 +123,6 @@ export class Layer {
 
     code += ")";
 
-    return { code, linker };
+    return { code, link };
   }
 }
