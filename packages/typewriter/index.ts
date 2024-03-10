@@ -6,14 +6,7 @@ import { p_primitive_types } from "./python_primitive";
 import { Str } from "./str";
 import { Tuple } from "./tuple";
 
-export type p_types =
-  | p_primitive_types
-  | Dict
-  | List
-  | Tuple
-  | Int
-  | Str
-  | None;
+export type p_types = p_primitive_types | Dict | List | Tuple | None;
 export * from "./str";
 export * from "./tuple";
 export * from "./int";

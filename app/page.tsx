@@ -53,7 +53,7 @@ export default function Home() {
 
   const generateCode = () => {
     const layers = nodes.map((node) => node.data);
-    const model = new Model({ name: "sks", layers }).compile();
+    const model = Model.of({ layers }).compile();
     console.log(model);
   };
 
