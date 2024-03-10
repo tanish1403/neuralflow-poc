@@ -1,3 +1,5 @@
-export * from "./input";
+import { dense } from "./dense";
 
-export const layers = [];
+export * from "./input";
+export * from "./base";
+export const layers = [dense];

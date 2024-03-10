@@ -1,2 +1,2 @@
 export * from "./layers";
-export * from "./base-layer";
+export * from "./model";

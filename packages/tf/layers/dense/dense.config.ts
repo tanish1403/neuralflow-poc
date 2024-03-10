@@ -1,48 +1,54 @@
-import { None } from "@/packages/typewriter";
+import { None, Str } from "@/packages/typewriter";
 import { ArgsInstance } from "../base";
 
 export const args: ArgsInstance[] = [
   {
-    name: "input_shape",
+    name: "units",
+    isRequired: true,
+  },
+  {
+    name: "activation",
     isRequired: false,
     defaultValue: None.of(),
   },
   {
-    name: "batch_size",
+    name: "use_bias",
     isRequired: false,
     defaultValue: None.of(),
   },
   {
-    name: "dtype",
+    name: "kernel_initializer",
+    isRequired: false,
+    defaultValue: Str.of("glorot_uniform"),
+  },
+  {
+    name: "bias_initializer",
+    isRequired: false,
+    defaultValue: Str.of("zeros"),
+  },
+  {
+    name: "kernel_regularizer",
     isRequired: false,
     defaultValue: None.of(),
   },
   {
-    name: "input_tensor",
+    name: "bias_regularizer",
     isRequired: false,
     defaultValue: None.of(),
   },
   {
-    name: "sparse",
+    name: "activity_regularizer",
     isRequired: false,
     defaultValue: None.of(),
   },
   {
-    name: "name",
+    name: "kernel_constraint",
     isRequired: false,
     defaultValue: None.of(),
   },
   {
-    name: "ragged",
-    isRequired: false,
-    defaultValue: None.of(),
-  },
-  {
-    name: "type_spec",
+    name: "bias_constraint",
     isRequired: false,
     defaultValue: None.of(),
   },
 ];
-
-// (2, 3, 4)
-// Tuple.of(Int.of(32), Int.of(32), Int.of(3)),

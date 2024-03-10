@@ -1,4 +1,5 @@
+import { Float } from "./float";
 import { Int } from "./int";
 import { Str } from "./str";
 
-export type p_primitive_types = Int | Str;
+export type p_primitive_types = Int | Str | Float;

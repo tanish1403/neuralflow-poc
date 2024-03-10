@@ -1,4 +1,15 @@
-import { WithStaticOf, py } from "../type";
-import { StrBase } from "./base";
+import { py, supported_types } from "../type";
 
-export const Str: WithStaticOf<py> = StrBase;
+export class Str implements py {
+  value: string = "";
+  type: supported_types = supported_types.str;
+  constructor(s: string) {
+    this.value = s;
+  }
+  toCodeString(): string {
+    return `"${this.value}"`;
+  }
+  static of(s: string): Str {
+    return new Str(s);
+  }
+}

@@ -1,4 +1,4 @@
-import { Layer } from "../../base-layer";
+import { Layer } from "../base";
 import { args } from "./input.config";
 
 export const input = () =>
