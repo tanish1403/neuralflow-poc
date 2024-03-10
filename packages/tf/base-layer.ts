@@ -103,4 +103,25 @@ export class Layer {
     this.args = args.map((a) => new Args(a));
     this.kwargs = [];
   }
+
+  /**
+   * @compiler
+   *
+   */
+
+  compileLayer(): { code: string; linker: string } {
+    const linker = `from tensorflow.keras.layers import ${this.nameTf}`;
+    let code = `${this.nameTf}(`;
+
+    this.args.forEach((arg, i) => {
+      code += arg.getCompiledString();
+      if (i !== this.args.length - 1) {
+        code += ", ";
+      }
+    });
+
+    code += ")";
+
+    return { code, linker };
+  }
 }
